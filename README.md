@@ -35,6 +35,7 @@ Create a `.env` file in the `backend` directory and add the following:
 PORT=5000
 DATABASE_URL="mongodb+srv://your_username:your_password@cluster.mongodb.net/exam_db?retryWrites=true&w=majority"
 JWT_SECRET="your_super_secret_key_here"
+JWT_EXPIRE="1h"
 
 ```
 
