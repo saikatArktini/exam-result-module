@@ -1,0 +1,14 @@
+import { Loader2 } from 'lucide-react';
+
+const Loader = ({ fullPage = true }) => {
+  return (
+    <div className={`flex items-center justify-center ${fullPage ? 'h-screen w-full' : 'h-full w-full p-8'}`}>
+      <div className="text-center">
+        <Loader2 className="h-10 w-10 animate-spin text-blue-600 mx-auto" />
+        <p className="mt-2 text-sm font-medium text-gray-500">Loading...</p>
+      </div>
+    </div>
+  );
+};
+
+export default Loader;

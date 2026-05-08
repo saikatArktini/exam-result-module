@@ -1,0 +1,67 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Admin {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Student {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  name       String
+  rollNumber String   @unique
+  className  String
+  section    String
+  email      String?
+  phone      String?
+  results    Result[]
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model Subject {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  subjectName String
+  subjectCode String   @unique
+  fullMarks   Int
+  passMarks   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Result {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  student     Student      @relation(fields: [studentId], references: [id])
+  studentId   String       @db.ObjectId
+  examName    String
+  marks       SubjectMark[]
+  
+  // Calculated fields (stored for performance/historical snapshot)
+  totalMarks  Float
+  percentage  Float
+  grade       String
+  status      String       // Pass/Fail
+  
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
+
+  @@unique([studentId, examName])
+}
+
+type SubjectMark {
+  subjectId     String @db.ObjectId
+  subjectName   String
+  marksObtained Float
+  fullMarks     Float
+  passMarks     Float
+}
