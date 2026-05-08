@@ -24,9 +24,6 @@ cd backend
 
 # Install dependencies
 npm install
-
-# Setup Prisma
-npx prisma generate
 ```
 
 ### 3. Environment Configuration
@@ -41,7 +38,8 @@ JWT_EXPIRE="1h"
 
 ### 4. Database Initialization
 ```bash
-# Push the schema to your MongoDB
+# Initialize Prisma and push schema
+npx prisma generate
 npx prisma db push
 
 # (Optional) Seed initial data
