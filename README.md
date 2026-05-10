@@ -46,6 +46,13 @@ npx prisma db push
 node prisma/seed.js
 ```
 
+> [!IMPORTANT]
+> **MongoDB Atlas Users**: To allow the application to connect, you must whitelist your IP address in the **Network Access** tab of your Atlas dashboard:
+> 1. Go to **Network Access** (under Security) in the sidebar.
+> 2. Click **Add IP Address**.
+> 3. Click **Allow Access From Anywhere** (this sets IP to `0.0.0.0/0`).
+> 4. Click **Confirm**.
+
 ### 5. Frontend Setup
 ```bash
 # Navigate to frontend directory
