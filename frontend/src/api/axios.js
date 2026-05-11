@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { getToken } from '../utils/localStorage';
+import { getToken, clearAuth } from '../utils/localStorage';
 
 const API_URL = 'http://localhost:5000/api';
 
@@ -21,9 +21,8 @@ api.interceptors.response.use(
   (response) => response,
   (error) => {
     if (error.response && error.response.status === 401) {
-      // If unauthorized, clear local storage and force login
-      localStorage.removeItem('user');
-      localStorage.removeItem('token');
+      // If unauthorized, clear local storage using the helper and force login
+      clearAuth();
       window.location.href = '/login';
     }
     return Promise.reject(error);
