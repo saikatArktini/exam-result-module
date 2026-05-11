@@ -4,12 +4,10 @@ backend/node_modules/
 frontend/node_modules/
 
 # Environment Variables
-.env
 backend/.env
 frontend/.env
 
 # IDE / Editor
-.vscode/
 .idea/
 *.swp
 *.log
@@ -24,3 +22,4 @@ Thumbs.db
 
 # Prisma
 backend/src/generated/
+config.bat
